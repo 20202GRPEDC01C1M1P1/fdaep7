@@ -17,6 +17,10 @@ class HomeViewModel : ViewModel() {
         )
     }
 
+    fun allCars() : List<Car> {
+        return Cars.all()
+    }
+
     fun getCar(i: Int): Car {
         return Cars.get(i)
     }

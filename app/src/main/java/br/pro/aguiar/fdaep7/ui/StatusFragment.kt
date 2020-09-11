@@ -36,14 +36,14 @@ class StatusFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mainViewModel.statusMsg.observe(viewLifecycleOwner, Observer {
-            Snackbar
-                .make(
-                    root_layout_status,
-                    it,
-                    Snackbar.LENGTH_LONG
-                ).show()
-        })
+//        mainViewModel.statusMsg.observe(viewLifecycleOwner, Observer {
+//            Snackbar
+//                .make(
+//                    root_layout_status,
+//                    it,
+//                    Snackbar.LENGTH_LONG
+//                ).show()
+//        })
 
     }
 }

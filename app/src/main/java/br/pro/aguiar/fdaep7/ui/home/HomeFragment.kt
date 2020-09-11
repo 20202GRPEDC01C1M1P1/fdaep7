@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.pro.aguiar.fdaep7.MainViewModel
 import br.pro.aguiar.fdaep7.R
 import br.pro.aguiar.fdaep7.ViewModelFactory
+import br.pro.aguiar.fdaep7.adapter.CarsRecyclerAdapter
+import br.pro.aguiar.fdaep7.model.Car
+import br.pro.aguiar.fdaep7.repository.Cars
 import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment() {
@@ -47,19 +52,30 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel.setupAllCars(
-            listViewHomeCarros,
-            requireContext())
-        listViewHomeCarros.setOnItemClickListener { adapterView, view, i, l ->
-            mainViewModel.setStatusMsg("Consultando Carro")
-            var carro = homeViewModel.getCar(i)
-            mainViewModel.setCarro(carro)
-//            Toast.makeText(
-//                requireContext(),
-//                carro.toString(),
-//                Toast.LENGTH_LONG
-//            ).show()
-        }
+        listViewHomeCarros.adapter =
+            CarsRecyclerAdapter(homeViewModel.allCars(), this::itemClick)
+        listViewHomeCarros.layoutManager =
+            LinearLayoutManager(requireContext())
+
+        /*
+//        homeViewModel.setupAllCars(
+//            listViewHomeCarros,
+//            requireContext())
+
+//        listViewHomeCarros.setOnItemClickListener { adapterView, view, i, l ->
+//            mainViewModel.setStatusMsg("Consultando Carro")
+//            var carro = homeViewModel.getCar(i)
+//            mainViewModel.setCarro(carro)
+////            Toast.makeText(
+////                requireContext(),
+////                carro.toString(),
+////                Toast.LENGTH_LONG
+////            ).show()
+//        }
+         */
     }
 
+    fun itemClick(car: Car) {
+        mainViewModel.setCarro(car)
+    }
 }
