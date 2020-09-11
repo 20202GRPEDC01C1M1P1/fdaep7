@@ -53,26 +53,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listViewHomeCarros.adapter =
-            CarsRecyclerAdapter(homeViewModel.allCars(), this::itemClick)
+            CarsRecyclerAdapter(
+                homeViewModel.allCars(),
+                this::itemClick
+            )
         listViewHomeCarros.layoutManager =
             LinearLayoutManager(requireContext())
 
-        /*
-//        homeViewModel.setupAllCars(
-//            listViewHomeCarros,
-//            requireContext())
 
-//        listViewHomeCarros.setOnItemClickListener { adapterView, view, i, l ->
-//            mainViewModel.setStatusMsg("Consultando Carro")
-//            var carro = homeViewModel.getCar(i)
-//            mainViewModel.setCarro(carro)
-////            Toast.makeText(
-////                requireContext(),
-////                carro.toString(),
-////                Toast.LENGTH_LONG
-////            ).show()
-//        }
-         */
     }
 
     fun itemClick(car: Car) {

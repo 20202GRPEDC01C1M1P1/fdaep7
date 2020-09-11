@@ -17,8 +17,9 @@ class CarsRecyclerAdapter (
     private val cars: List<Car>,
     private val click : (Car) -> Unit
 ) : RecyclerView.Adapter<CarsRecyclerAdapter.CarsViewHolder>() {
-    class CarsViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+
+    class CarsViewHolder(view: View)
+        : RecyclerView.ViewHolder(view) {
         val carMarca : TextView = itemView.textViewCarMarca
         val carModelo : TextView = itemView.textViewCarModelo
         val carEdit : ImageButton = itemView.imageButtonCarEdit
@@ -44,6 +45,7 @@ class CarsRecyclerAdapter (
 
         return carsViewHolder
     }
+
     override fun onBindViewHolder
                 (holder: CarsViewHolder, position: Int) {
         val car = cars[position]
@@ -64,5 +66,6 @@ class CarsRecyclerAdapter (
             ).show()
         }
     }
+
     override fun getItemCount(): Int = cars.size
 }
